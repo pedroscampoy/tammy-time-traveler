@@ -5,13 +5,12 @@ class Game {
     this.canvas.height = 400
     this.ctx = this.canvas.getContext('2d')
 
-    this.fps = 1000 / 60
     this.drawInterval = undefined
 
     this.slider = document.getElementById("time-travel")
 
-    this.background = new Background(this.ctx, './img/present_bg.png')
-    this.tammy = new Tammy(this.ctx, 20, this.canvas.height - 100)
+    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
+    this.tammy = new Tammy(this.ctx, 100, this.canvas.height - 100, 'S')
     this.doorPastLeft = new Door(this.ctx, 30, this.canvas.height - 150)
 
     this.setEra()
@@ -23,11 +22,11 @@ class Game {
   setEra() {
 
     if (this.slider.value <= 33) {
-      this.background = new Background(this.ctx, './img/past_bg.png')
+      this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
     } else if (this.slider.value > 33 && this.slider.value <= 66) {
-      this.background = new Background(this.ctx, './img/present_bg.png')
+      this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
     } else {
-      this.background = new Background(this.ctx, './img/future_bg.png')
+      this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
     }
   }
 
@@ -46,7 +45,7 @@ class Game {
         this.draw()
         this.setEra()
         this.travelTime()
-      }, this.fps);
+      }, FPS);
     }
   }
 
@@ -79,7 +78,10 @@ class Game {
     //const restCoins = this.coins.filter(coin => !this.tammy.collidesWith(coin))
     if (this.tammy.collidesWith(this.doorPastLeft)) {
       this.doorPastLeft.activated = true;
-
+      if (this.doorPastLeft.movements.up === true && this.doorPastLeft.activated === true) {
+        this.pause()
+        console.log('ENTER ENTER BUH')
+      }
     } else {
       this.doorPastLeft.activated = false;
     }

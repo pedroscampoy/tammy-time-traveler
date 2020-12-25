@@ -1,12 +1,15 @@
 class Background {
-  constructor(ctx, sourceImg) {
+  constructor(ctx, width, height, sourceImg) {
     this.ctx = ctx
     this.sourceImg = sourceImg
 
     this.x = 0
     this.y = 0
-    this.h = this.ctx.canvas.height
-    this.w = this.ctx.canvas.width
+    //this.h = this.ctx.canvas.height
+    //this.w = this.ctx.canvas.width
+
+    this.h = height
+    this.w = width
 
     this.vx = -2
 
@@ -45,7 +48,6 @@ class Background {
   }
 
   clear() {
-    console.log('clear bg')
     this.ctx.clearRect(0, 0, this.w, this.h)
   }
   preShake() {

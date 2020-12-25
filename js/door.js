@@ -10,9 +10,14 @@ class Door {
 
     this.activated = false
 
+    this.DrawHouseInterval = undefined
+
     this.movements = {
       up: false
     }
+
+    this.tammy = new Tammy(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, 'M')
+
   }
 
   draw() {
@@ -41,14 +46,29 @@ class Door {
   }
 
   onKeyEvent(event) {
+    this.tammy.onKeyEvent(event)
     const status = event.type === 'keydown'
     switch (event.keyCode) {
       case KEY_UP:
         this.movements.up = status
-        console.log("ENTER DOOR")
+        this.enterHouse()
       default:
         break;
     }
+  }
+
+  enterHouse() {
+    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/House_LP.png')
+
+
+    if (!this.DrawHouseInterval && this.movements.up === true && this.activated === true) {
+      this.DrawHouseInterval = setInterval(() => {
+        this.background.draw()
+        this.tammy.draw()
+        this.tammy.move()
+      }, FPS);
+    }
+
   }
 
 

@@ -1,5 +1,5 @@
 class Tammy {
-  constructor(ctx, x, y) {
+  constructor(ctx, x, y, size) {
     this.ctx = ctx
 
     this.x = x
@@ -15,7 +15,7 @@ class Tammy {
     this.height = 0
 
     this.sprite = new Image()
-    this.sprite.src = './img/tammy.png'
+    size === 'S' ? this.sprite.src = './img/tammy.png' : this.sprite.src = './img/tammy_M.png'
     this.sprite.isReady = false
     this.sprite.horizontalFrames = 4
     this.sprite.verticalFrames = 2
@@ -70,7 +70,6 @@ class Tammy {
     switch (event.keyCode) {
       case KEY_UP:
         this.movements.up = status
-        console.log('UP')
         break;
       case KEY_RIGHT:
         this.movements.right = status
