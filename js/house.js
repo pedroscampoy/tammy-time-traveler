@@ -1,6 +1,8 @@
-class Door {
-  constructor(ctx, x, y) {
+class House {
+  constructor(ctx, x, y, imgBg) {
     this.ctx = ctx
+
+    this.imgBg = imgBg
 
     this.x = x
     this.y = y
@@ -51,26 +53,47 @@ class Door {
     switch (event.keyCode) {
       case KEY_UP:
         this.movements.up = status
-        this.enterHouse()
+
       default:
         break;
     }
   }
 
   enterHouse() {
-    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/House_LP.png')
-
-
-    if (!this.DrawHouseInterval && this.movements.up === true && this.activated === true) {
+    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, this.imgBg)
+    if (!this.DrawHouseInterval && this.activated === true && this.movements.up === true) {
+      state.exterior = false
       this.DrawHouseInterval = setInterval(() => {
-        this.background.draw()
-        this.tammy.draw()
-        this.tammy.move()
+        if (!state.exterior) {
+          this.background.draw()
+          this.tammy.draw()
+          this.tammy.move()
+          this.checkExit(this.tammy)
+        } else {
+          this.pause()
+        }
       }, FPS);
     }
 
   }
 
+  pause() {
+    clearInterval(this.DrawHouseInterval)
+    this.DrawHouseInterval = undefined
+  }
 
+  checkExit(object) {
+    if (object.x <= 0) {
+      state.exterior = true
+      this.tammy.x = 100
+      this.pause()
+    }
+  }
+
+  reStartGame(game) {
+    game.start()
+  }
 
 }
+
+

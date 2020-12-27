@@ -11,8 +11,6 @@ class Background {
     this.h = height
     this.w = width
 
-    this.vx = -2
-
     this.img = new Image()
     this.img.src = this.sourceImg
     this.img.isReady = false

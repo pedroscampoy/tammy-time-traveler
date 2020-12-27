@@ -4,7 +4,7 @@ class Tammy {
 
     this.x = x
     this.minX = 0
-    this.maxX = this.ctx.canvas.width - 50
+    this.maxX = this.ctx.canvas.width - 80
     this.vx = 0
 
     this.y = y
@@ -83,7 +83,7 @@ class Tammy {
   }
 
   move() {
-    if (this.movements.up && !this.isJumping) {
+    if (this.movements.up && !this.isJumping && state.exterior) {
       this.isJumping = true
       this.vy = -6
     } else if (this.isJumping) {
@@ -115,7 +115,7 @@ class Tammy {
   }
 
   animate() {
-    if (this.isJumping) {
+    if (this.isJumping && this.movements.up) {
       this.animateJump()
     } else if (this.movements.right || this.movements.left) {
       this.animateSprite()

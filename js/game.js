@@ -11,7 +11,12 @@ class Game {
 
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
     this.tammy = new Tammy(this.ctx, 100, this.canvas.height - 100, 'S')
-    this.doorPastLeft = new Door(this.ctx, 30, this.canvas.height - 150)
+
+    this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png')]
+    this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png')]
+    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png')]
+
+    this.houses = this.presentHouses
 
     this.setEra()
     this.draw()
@@ -23,10 +28,13 @@ class Game {
 
     if (this.slider.value <= 33) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
+      this.houses = this.pastHouses
     } else if (this.slider.value > 33 && this.slider.value <= 66) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
+      this.houses = this.presentHouses
     } else {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
+      this.houses = this.futureHouses
     }
   }
 
@@ -39,13 +47,17 @@ class Game {
   start() {
     if (!this.drawInterval) {
       this.drawInterval = setInterval(() => {
-        this.clear()
-        this.move()
-        this.checkCollisions()
-        this.draw()
-        this.setEra()
-        this.travelTime()
+        if (state.exterior) {
+          this.clear()
+          this.move()
+          this.checkCollisions()
+          this.draw()
+          this.setEra()
+          this.travelTime()
+        }
       }, FPS);
+    } else {
+      this.pause()
     }
   }
 
@@ -59,7 +71,7 @@ class Game {
 
   draw() {
     this.background.draw()
-    this.doorPastLeft.draw()
+    this.houses.forEach(house => house.draw())
     this.tammy.draw()
   }
 
@@ -69,21 +81,23 @@ class Game {
 
   onKeyEvent(event) {
     this.tammy.onKeyEvent(event)
-    this.doorPastLeft.onKeyEvent(event)
+    this.houses.forEach(house => house.onKeyEvent(event))
     //this.background.onKeyEvent(event)
   }
 
   checkCollisions() {
     //map collision with doors and return door while changing state to activated
-    //const restCoins = this.coins.filter(coin => !this.tammy.collidesWith(coin))
-    if (this.tammy.collidesWith(this.doorPastLeft)) {
-      this.doorPastLeft.activated = true;
-      if (this.doorPastLeft.movements.up === true && this.doorPastLeft.activated === true) {
-        this.pause()
-        console.log('ENTER ENTER BUH')
+    this.houses.forEach(house => {
+      if (this.tammy.collidesWith(house)) {
+        house.activated = true;
+        this.tammy.isJumping = true
+        if (house.movements.up === true && house.activated === true) {
+          house.enterHouse()
+        }
+      } else {
+        house.activated = false;
       }
-    } else {
-      this.doorPastLeft.activated = false;
-    }
+    })
+
   }
 }
