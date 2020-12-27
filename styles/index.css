@@ -12,15 +12,16 @@ html, body {
 canvas {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 35%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  z-index: 1;
 }
 
 #time-travel{
   position: absolute;
   left: 50%;
-  top: 90%;
+  top: 91%;
   transform: translate(-50%);
   appearance: none;
   width: 1000px;
@@ -39,4 +40,42 @@ canvas {
     background: goldenrod;
     background: url('../img/clock_icon_smile_sml.png') no-repeat;
     border-radius: 0;
+}
+
+.console {
+  background-color: darkslategray;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%);
+  width: 1000px;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.inventory {
+  background-color: chartreuse;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.4;
+}
+
+.inventory .row {
+  background-color: burlywood;
+  justify-content: space-evenly;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.item {
+  margin: 0 0.3rem;
+  border: 1px solid black;
+  height: 100%;
+  flex: 1;
 }

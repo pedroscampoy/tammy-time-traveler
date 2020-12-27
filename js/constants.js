@@ -11,6 +11,7 @@ const GRAVITY = 0.2
 
 const state = {
   era: 'present',
+  timeTravel: true,
   exterior: true,
   present: {
     imgLeft: './img/House_LP.png',

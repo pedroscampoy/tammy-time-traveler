@@ -12,6 +12,8 @@ class House {
 
     this.activated = false
 
+    this.slider = document.getElementById("time-travel")
+
     this.DrawHouseInterval = undefined
 
     this.movements = {
@@ -69,6 +71,7 @@ class House {
           this.tammy.draw()
           this.tammy.move()
           this.checkExit(this.tammy)
+          this.slider.disabled = true
         } else {
           this.pause()
         }

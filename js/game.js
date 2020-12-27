@@ -54,6 +54,7 @@ class Game {
           this.draw()
           this.setEra()
           this.travelTime()
+          this.updateState()
         }
       }, FPS);
     } else {
@@ -85,6 +86,11 @@ class Game {
     //this.background.onKeyEvent(event)
   }
 
+  updateState() {
+    console.log(this.slider.disabled)
+    state.timeTravel === true ? this.slider.disabled = false : this.slider.disabled = true
+  }
+
   checkCollisions() {
     //map collision with doors and return door while changing state to activated
     this.houses.forEach(house => {
@@ -93,9 +99,11 @@ class Game {
         this.tammy.isJumping = true
         if (house.movements.up === true && house.activated === true) {
           house.enterHouse()
+          state.timeTravel = false
         }
       } else {
         house.activated = false;
+        state.timeTravel = true
       }
     })
 
