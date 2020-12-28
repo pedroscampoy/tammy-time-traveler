@@ -43,6 +43,7 @@ canvas {
 }
 
 .console {
+  padding: 0.5rem;
   background-color: darkslategray;
   position: absolute;
   left: 50%;
@@ -52,7 +53,7 @@ canvas {
   height: 120px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-grow: 1;
 }
 
@@ -61,7 +62,7 @@ canvas {
   justify-content: space-evenly;
   display: flex;
   flex-direction: column;
-  flex-grow: 0.4;
+  flex-grow: 0.3;
 }
 
 .inventory .row {
@@ -74,8 +75,19 @@ canvas {
 }
 
 .item {
+  padding: 0.5rem;
   margin: 0 0.3rem;
   border: 1px solid black;
   height: 100%;
   flex: 1;
+}
+
+.face {
+  background-color: cadetblue;
+  flex-grow: 0.2;
+}
+
+.dialog {
+  background-color: black;
+  flex-grow: 1;
 }
