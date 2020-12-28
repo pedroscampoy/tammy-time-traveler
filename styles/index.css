@@ -75,19 +75,46 @@ canvas {
 }
 
 .item {
-  padding: 0.5rem;
-  margin: 0 0.3rem;
+  padding: 0.1rem;
+  /*margin: 0 0.3rem;*/
   border: 1px solid black;
-  height: 100%;
   flex: 1;
 }
 
-.face {
-  background-color: cadetblue;
-  flex-grow: 0.2;
+#faceDiv {
+  padding: 0.6rem;
+  background-color: black;
+  overflow:hidden;
+  max-width: 8rem;
 }
 
-.dialog {
+#faceDiv img {
+  object-fit: cover;
+  object-position: 0% 10%;
+
+  width: 476px;
+  height: 182px;
+}
+
+#dialog {
+  padding: 0.5rem;
   background-color: black;
-  flex-grow: 1;
+  color: white;
+  flex-grow: 0.7;
+}
+
+.triloClean {
+  background-image: url("../img/triloCleanM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.triloFossil {
+  background-image: url("../img/triloM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.timeClock {
+  background-image: url("../img/timeClockM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

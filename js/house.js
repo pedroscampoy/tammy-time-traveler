@@ -12,15 +12,13 @@ class House {
 
     this.activated = false
 
-    this.slider = document.getElementById("time-travel")
-
     this.DrawHouseInterval = undefined
 
     this.movements = {
       up: false
     }
 
-    this.tammy = new Tammy(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, 'M')
+    this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_M.png')
 
   }
 
@@ -71,7 +69,7 @@ class House {
           this.tammy.draw()
           this.tammy.move()
           this.checkExit(this.tammy)
-          this.slider.disabled = true
+          SLIDER.disabled = true
         } else {
           this.pause()
         }

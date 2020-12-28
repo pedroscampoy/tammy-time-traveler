@@ -9,12 +9,19 @@ const SPEED = 4
 const SHAKEFPS = 100
 const GRAVITY = 0.2
 
+const SLIDER = document.getElementById("time-travel")
+
+const FACEDIV = document.getElementById('faceDiv')
+const DIALOG = document.getElementById('dialog')
+const INVENTORY = document.getElementsByClassName('item')
+
 const state = {
   era: 'present',
   timeTravel: true,
   exterior: true,
-  present: {
-    imgLeft: './img/House_LP.png',
-    imgRight: './img/House_RP.png'
-  }
+  inventory: [
+    { timeClock: true },
+    { triloFossil: true },
+    { triloClean: true }
+  ]
 }

@@ -1,5 +1,5 @@
-class Tammy {
-  constructor(ctx, x, y, size) {
+class Character {
+  constructor(ctx, x, y, imgChar) {
     this.ctx = ctx
 
     this.x = x
@@ -15,7 +15,7 @@ class Tammy {
     this.height = 0
 
     this.sprite = new Image()
-    size === 'S' ? this.sprite.src = './img/tammy.png' : this.sprite.src = './img/tammy_M.png'
+    this.sprite.src = imgChar
     this.sprite.isReady = false
     this.sprite.horizontalFrames = 4
     this.sprite.verticalFrames = 2
@@ -41,10 +41,6 @@ class Tammy {
 
   isReady() {
     return this.sprite.isReady
-  }
-
-  clear() {
-    pass
   }
 
   draw() {
@@ -154,5 +150,13 @@ class Tammy {
       this.x + this.width > element.x &&
       this.y < element.y + element.height &&
       this.y + this.height > element.y
+  }
+
+  speak(text) {
+    DIALOG.innerHTML = text
+
+    const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
+
+    FACEDIV.innerHTML = faceImafeTag
   }
 }

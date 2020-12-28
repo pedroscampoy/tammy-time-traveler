@@ -7,10 +7,8 @@ class Game {
 
     this.drawInterval = undefined
 
-    this.slider = document.getElementById("time-travel")
-
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
-    this.tammy = new Tammy(this.ctx, 100, this.canvas.height - 100, 'S')
+    this.tammy = new Character(this.ctx, 100, this.canvas.height - 100, './img/tammy.png')
 
     this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png')]
     this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png')]
@@ -20,16 +18,17 @@ class Game {
 
     this.setEra()
     this.draw()
+    this.tammy.speak('HOLA MOMI GUAPA')
 
 
   }
 
   setEra() {
 
-    if (this.slider.value <= 33) {
+    if (SLIDER.value <= 33) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
       this.houses = this.pastHouses
-    } else if (this.slider.value > 33 && this.slider.value <= 66) {
+    } else if (SLIDER.value > 33 && SLIDER.value <= 66) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
       this.houses = this.presentHouses
     } else {
@@ -39,7 +38,7 @@ class Game {
   }
 
   travelTime() {
-    if ((this.slider.value >= 5 && this.slider.value <= 47.5) || (this.slider.value >= 52.5 && this.slider.value <= 95)) {
+    if ((SLIDER.value >= 5 && SLIDER.value <= 47.5) || (SLIDER.value >= 52.5 && SLIDER.value <= 95)) {
       this.background.shake()
     }
   }
@@ -55,6 +54,7 @@ class Game {
           this.setEra()
           this.travelTime()
           this.updateState()
+          this.updateInventory()
         }
       }, FPS);
     } else {
@@ -87,8 +87,7 @@ class Game {
   }
 
   updateState() {
-    console.log(this.slider.disabled)
-    state.timeTravel === true ? this.slider.disabled = false : this.slider.disabled = true
+    state.timeTravel === true ? SLIDER.disabled = false : SLIDER.disabled = true
   }
 
   checkCollisions() {
@@ -106,6 +105,17 @@ class Game {
         state.timeTravel = true
       }
     })
+  }
 
+  updateInventory() {
+    this.presentObjects = state.inventory.filter(item => Object.values(item)[0] === true)
+    this.classObjects = this.presentObjects.map(object => Object.keys(object)[0])
+    this.newClassObject = [...INVENTORY].forEach(
+      (item, index) => {
+        if (this.classObjects[index]) {
+          item.classList = `item ${this.classObjects[index]}`
+        }
+      }
+    );
   }
 }
