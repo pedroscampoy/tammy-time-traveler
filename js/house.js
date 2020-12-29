@@ -53,7 +53,6 @@ class House {
     switch (event.keyCode) {
       case KEY_UP:
         this.movements.up = status
-
       default:
         break;
     }
@@ -89,10 +88,6 @@ class House {
       this.tammy.x = 100
       this.pause()
     }
-  }
-
-  reStartGame(game) {
-    game.start()
   }
 
 }

@@ -10,7 +10,7 @@ window.onload = () => {
     game.onKeyEvent(event)
   })
 
-  document.addEventListener('keypress', () => {
-    pass
+  document.addEventListener('keypress', (event) => {
+    game.onKeyEvent(event)
   })
 }

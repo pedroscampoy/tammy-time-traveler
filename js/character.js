@@ -75,6 +75,8 @@ class Character {
       case KEY_LEFT:
         this.movements.left = status
         break;
+      case KEY_SPACE:
+        this.spaced = status
       default:
         break;
     }
@@ -154,6 +156,14 @@ class Character {
       this.y + this.height > element.y
   }
 
+  writeConsole(wordList) {
+    wordList.forEach((letter, i) => {
+      setTimeout(() => {
+        DIALOG.innerHTML += letter
+      }, i * 10);
+    })
+  }
+
   speak(text) {
     const textList = text.split(' ')
     const step = 45
@@ -161,23 +171,66 @@ class Character {
     let nextIndex = prevIndex + step
     const dialogList = []
 
+
     for (let index = 0; index < textList.length; index += step) {
       dialogList.push(textList.slice(prevIndex, nextIndex).join(" "));
       prevIndex += step
       nextIndex += step
     }
 
-    const dialogListSplit = dialogList.map(phrase => phrase.split(""))
+    let dialogListSplit = dialogList.map(phrase => phrase.split(""))
 
-    dialogListSplit[0].forEach((letter, i) => {
-      setTimeout(() => {
-        DIALOG.innerHTML += letter
-      }, i * 10);
-    });
+    if (dialogListSplit) {
+      this.writeConsole(dialogListSplit[0])
+    }
+
+    let removedElement = dialogListSplit.shift()
+
+    console.log(dialogListSplit.length)
+
+    if (dialogList.length >= 1) {
+      document.addEventListener('keypress', (event) => {
+        if (dialogList.length != 0) {
+          if (event.code === 'Space') {
+            DIALOG.innerHTML = ""
+            this.writeConsole(dialogListSplit[0])
+            removedElement = dialogListSplit.shift()
+          }
+        }
+      })
+    }
+    // for (let index = 0; index < dialogListSplit.length; index++) {
+    //   if (index === 0) {
+    //     console.log(0, index)
+    //     this.writeConsole(dialogListSplit[0])
+    //     var interval = window.setInterval(function () {
+    //       console.log('interval')
+    //     }, 1000);
+    //     document.addEventListener('keypress', (event) => {
+    //       if (event.code === 'Space') {
+    //         DIALOG.innerHTML = ""
+    //         this.writeConsole(dialogListSplit[index])
+    //         console.log('SPACED')
+    //         index++
+    //       }
+    //     })
+    //   } else if (index != 0 && index < dialogListSplit.length) {
+    //     console.log('otro', index)
+    //   } else {
+    //     console.log('ELSE', index)
+    //   }
+    // }
+
+
 
     const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
 
     FACEDIV.innerHTML = faceImafeTag
+
   }
 
+
+
+
 }
+

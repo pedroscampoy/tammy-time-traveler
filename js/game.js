@@ -8,7 +8,8 @@ class Game {
     this.drawInterval = undefined
 
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
-    this.tammy = new Character(this.ctx, 100, this.canvas.height - 100, './img/tammy.png')
+    this.tammy = new Character(this.ctx, 150, this.canvas.height - 100, './img/tammy.png')
+    this.trilo = new Character(this.ctx, 80, this.canvas.height - 100, './img/trilo.png')
 
     this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png')]
     this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png')]
@@ -19,6 +20,7 @@ class Game {
     this.setEra()
     this.draw()
     this.tammy.speak("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+
 
 
   }
@@ -74,14 +76,17 @@ class Game {
     this.background.draw()
     this.houses.forEach(house => house.draw())
     this.tammy.draw()
+    this.trilo.draw()
   }
 
   move() {
     this.tammy.move()
+    this.trilo.move()
   }
 
   onKeyEvent(event) {
     this.tammy.onKeyEvent(event)
+    this.trilo.onKeyEvent(event)
     this.houses.forEach(house => house.onKeyEvent(event))
     //this.background.onKeyEvent(event)
   }
