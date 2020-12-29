@@ -14,6 +14,8 @@ class Character {
     this.width = 0
     this.height = 0
 
+    this.talkInterval = undefined
+
     this.sprite = new Image()
     this.sprite.src = imgChar
     this.sprite.isReady = false
@@ -153,10 +155,29 @@ class Character {
   }
 
   speak(text) {
-    DIALOG.innerHTML = text
+    const textList = text.split(' ')
+    const step = 45
+    let prevIndex = 0
+    let nextIndex = prevIndex + step
+    const dialogList = []
+
+    for (let index = 0; index < textList.length; index += step) {
+      dialogList.push(textList.slice(prevIndex, nextIndex).join(" "));
+      prevIndex += step
+      nextIndex += step
+    }
+
+    const dialogListSplit = dialogList.map(phrase => phrase.split(""))
+
+    dialogListSplit[0].forEach((letter, i) => {
+      setTimeout(() => {
+        DIALOG.innerHTML += letter
+      }, i * 10);
+    });
 
     const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
 
     FACEDIV.innerHTML = faceImafeTag
   }
+
 }
