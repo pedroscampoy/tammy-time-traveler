@@ -8,18 +8,27 @@ class Game {
     this.drawInterval = undefined
 
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
+    //MAIN CHARACTERS
     this.tammy = new Character(this.ctx, 150, this.canvas.height - 100, './img/tammy.png')
     this.trilo = new Character(this.ctx, 150 - 60, this.canvas.height - 110, './img/trilo.png')
+    //SIDE CHARACTERS
+    this.babyjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 1)
+    this.youngjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 1)
+    this.oldjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 1)
 
-    this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png')]
-    this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png')]
-    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png')]
+    this.sideCharacters = [this.babyjosephilus, this.youngjosephilus, this.oldjosephilus]
+
+    this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png', this.youngjosephilus)]
+    this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png', this.babyjosephilus)]
+    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
 
     this.houses = this.presentHouses
 
     this.setEra()
     this.draw()
-    this.tammy.speak("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+    this.tammy.speak("El cangrejo herradura del Atlántico o cangrejo cacerola (Limulus polyphemus) es una especie de quelicerado de la clase Merostomata. Llega a alcanzar 60 cm de largo y 30 cm de ancho. A pesar de su nombre, esta especie está más próxima a las arañas y escorpiones (arácnidos), que a los cangrejos (crustáceos) con los que no guarda ninguna relación. Habita en las zonas costeras y los estuarios fluviales.")
+
+    this.oldjosephilus.speak('HELLO NAUTI')
 
 
 
@@ -88,7 +97,6 @@ class Game {
     this.tammy.onKeyEvent(event)
     this.trilo.onKeyEvent(event)
     this.houses.forEach(house => house.onKeyEvent(event))
-    //this.background.onKeyEvent(event)
   }
 
   updateState() {

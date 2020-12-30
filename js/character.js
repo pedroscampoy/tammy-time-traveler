@@ -1,5 +1,5 @@
 class Character {
-  constructor(ctx, x, y, imgChar) {
+  constructor(ctx, x, y, imgChar, defaultframe = 0) {
     this.ctx = ctx
 
     this.x = x
@@ -22,7 +22,7 @@ class Character {
     this.sprite.horizontalFrames = 4
     this.sprite.verticalFrames = 2
     this.sprite.horizontalFrameIndex = 0
-    this.sprite.verticalFrameIndex = 0
+    this.sprite.verticalFrameIndex = defaultframe
     this.sprite.drawCount = 0
     this.sprite.onload = () => {
       this.sprite.isReady = true
@@ -64,7 +64,7 @@ class Character {
       )
       this.ctx.restore()
       this.sprite.drawCount++
-      this.animate()
+      this.animate(MOVEMENT_FRAMES)
     }
   }
 
@@ -119,17 +119,19 @@ class Character {
     }
   }
 
-  animate() {
+  animate(movementsFrame) {
     if (this.isJumping && this.movements.up) {
       this.animateJump()
     } else if (this.movements.right || this.movements.left) {
-      this.animateSprite()
+      this.animateSprite(movementsFrame)
+    } else {
+      this.animateSprite(movementsFrame + 15)
     }
   }
 
   resetAnimation() {
     this.sprite.horizontalFrameIndex = 0
-    //this.sprite.verticalFrameIndex = 0
+    this.sprite.verticalFrameIndex = 0
   }
 
   animateJump() {
@@ -137,14 +139,14 @@ class Character {
     this.sprite.horizontalFrameIndex = 2
   }
 
-  animateSprite() {
+  animateSprite(mocementsFrames) {
     if (this.movements.right) {
       this.sprite.verticalFrameIndex = 0
     }
     else if (this.movements.left) {
       this.sprite.verticalFrameIndex = 1
     }
-    if (this.sprite.drawCount % MOVEMENT_FRAMES === 0) {
+    if (this.sprite.drawCount % mocementsFrames === 0) {
       if (this.sprite.horizontalFrameIndex >= this.sprite.horizontalFrames - 1) {
         this.sprite.horizontalFrameIndex = 0
       } else {
@@ -162,16 +164,17 @@ class Character {
   }
 
   writeConsole(wordList) {
+    wordList.unshift(" ")
     wordList.forEach((letter, i) => {
       setTimeout(() => {
         DIALOG.innerHTML += letter
-      }, i * 10);
+      }, i * 30);
     })
   }
 
   speak(text) {
     const textList = text.split(' ')
-    const step = 45
+    const step = 14
     let prevIndex = 0
     let nextIndex = prevIndex + step
     const dialogList = []
@@ -183,50 +186,22 @@ class Character {
       nextIndex += step
     }
 
-    let dialogListSplit = dialogList.map(phrase => phrase.split(""))
-
-    if (dialogListSplit) {
-      this.writeConsole(dialogListSplit[0])
-    }
-
-    let removedElement = dialogListSplit.shift()
-
-    console.log(dialogListSplit.length)
-
-    if (dialogList.length >= 1) {
-      document.addEventListener('keypress', (event) => {
-        if (dialogList.length != 0) {
-          if (event.code === 'Space') {
-            DIALOG.innerHTML = ""
-            this.writeConsole(dialogListSplit[0])
-            removedElement = dialogListSplit.shift()
-          }
+    dialogList.forEach((phrase, i) => {
+      setTimeout(() => {
+        if (i > 2) {
+          DIALOG.innerHTML = " " + dialogList[i - 2] + " " + dialogList[i - 1]
+          this.writeConsole(dialogList[i].split(""))
+        } else {
+          this.writeConsole(dialogList[i].split(""))
         }
-      })
-    }
-    // for (let index = 0; index < dialogListSplit.length; index++) {
-    //   if (index === 0) {
-    //     console.log(0, index)
-    //     this.writeConsole(dialogListSplit[0])
-    //     var interval = window.setInterval(function () {
-    //       console.log('interval')
-    //     }, 1000);
-    //     document.addEventListener('keypress', (event) => {
-    //       if (event.code === 'Space') {
-    //         DIALOG.innerHTML = ""
-    //         this.writeConsole(dialogListSplit[index])
-    //         console.log('SPACED')
-    //         index++
-    //       }
-    //     })
-    //   } else if (index != 0 && index < dialogListSplit.length) {
-    //     console.log('otro', index)
-    //   } else {
-    //     console.log('ELSE', index)
-    //   }
-    // }
+      }, i * 3000);
+    });
 
-
+    document.addEventListener('keypress', (event) => {
+      if (event.code === 'Space') {
+        DIALOG.innerHTML = ""
+      }
+    })
 
     const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
 

@@ -1,8 +1,9 @@
 class House {
-  constructor(ctx, x, y, imgBg) {
+  constructor(ctx, x, y, imgBg, owner) {
     this.ctx = ctx
 
     this.imgBg = imgBg
+    this.owner = owner
 
     this.x = x
     this.y = y
@@ -19,7 +20,7 @@ class House {
     }
 
     this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_M.png')
-    this.trilo = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/trilo_M.png')
+    this.trilo = new Character(this.ctx, this.ctx.canvas.height / 2 - 70, this.ctx.canvas.height / 2, './img/trilo_M.png')
   }
 
   draw() {
@@ -66,11 +67,15 @@ class House {
       this.DrawHouseInterval = setInterval(() => {
         if (!state.exterior) {
           this.background.draw()
+          if (this.owner) {
+            this.owner.draw()
+          }
           this.tammy.draw()
           this.tammy.move()
           this.trilo.draw()
-          this.trilo.follow(this.tammy, 60)
+          this.trilo.follow(this.tammy, 70)
           this.checkExit(this.tammy)
+          this.checkColition()
           SLIDER.disabled = true
         } else {
           this.pause()
@@ -90,6 +95,12 @@ class House {
       state.exterior = true
       this.tammy.x = 100
       this.pause()
+    }
+  }
+
+  checkColition() {
+    if (this.tammy.collidesWith(this.owner)) {
+      this.owner.speak('HELLO')
     }
   }
 
