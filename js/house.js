@@ -19,7 +19,7 @@ class House {
     }
 
     this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_M.png')
-
+    this.trilo = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/trilo_M.png')
   }
 
   draw() {
@@ -49,6 +49,7 @@ class House {
 
   onKeyEvent(event) {
     this.tammy.onKeyEvent(event)
+    this.trilo.onKeyEvent(event)
     const status = event.type === 'keydown'
     switch (event.keyCode) {
       case KEY_UP:
@@ -67,6 +68,8 @@ class House {
           this.background.draw()
           this.tammy.draw()
           this.tammy.move()
+          this.trilo.draw()
+          this.trilo.follow(this.tammy, 60)
           this.checkExit(this.tammy)
           SLIDER.disabled = true
         } else {

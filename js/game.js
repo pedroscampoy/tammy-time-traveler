@@ -9,7 +9,7 @@ class Game {
 
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
     this.tammy = new Character(this.ctx, 150, this.canvas.height - 100, './img/tammy.png')
-    this.trilo = new Character(this.ctx, 80, this.canvas.height - 100, './img/trilo.png')
+    this.trilo = new Character(this.ctx, 150 - 60, this.canvas.height - 110, './img/trilo.png')
 
     this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png')]
     this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png')]
@@ -81,7 +81,7 @@ class Game {
 
   move() {
     this.tammy.move()
-    this.trilo.move()
+    this.trilo.follow(this.tammy, 60)
   }
 
   onKeyEvent(event) {

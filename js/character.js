@@ -47,6 +47,10 @@ class Character {
 
   draw() {
     if (this.isReady()) {
+      this.ctx.save()
+      this.ctx.shadowOffsetX = 5;
+      this.ctx.shadowOffsetY = 5;
+      this.ctx.shadowColor = "rgba(94, 44, 8, 0.3)";
       this.ctx.drawImage(
         this.sprite,
         this.sprite.horizontalFrameIndex * this.sprite.frameWidth,
@@ -58,6 +62,7 @@ class Character {
         this.width,
         this.height
       )
+      this.ctx.restore()
       this.sprite.drawCount++
       this.animate()
     }
@@ -229,8 +234,41 @@ class Character {
 
   }
 
+  follow(character, distance) {
+    if (this.movements.up && !this.isJumping && state.exterior) {
+      this.isJumping = true
+      this.vy = -6
+    } else if (this.isJumping) {
+      this.vy += GRAVITY
+    }
 
+    if (this.movements.right) {
+      this.vx = SPEED
+      this.x = character.x - distance
+    } else if (this.movements.left) {
+      this.vx = -SPEED
+      this.x = character.x + distance
+    } else {
+      this.vx = 0
+    }
 
+    this.x += this.vx
+    this.y += this.vy
+
+    if (this.x >= this.maxX) {
+      this.x = this.maxX
+    } else if (this.x <= this.minX) {
+      this.x = this.minX
+    }
+
+    if (this.y >= this.maxY) {
+      this.isJumping = false
+      this.y = this.maxY
+      this.vy = 0
+    }
+  }
 
 }
+
+
 
