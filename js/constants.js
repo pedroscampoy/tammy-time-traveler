@@ -23,5 +23,6 @@ const state = {
     { timeClock: true },
     { triloFossil: true },
     { triloClean: true }
-  ]
+  ],
+  isTalking: false
 }

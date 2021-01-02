@@ -163,50 +163,67 @@ class Character {
       this.y + this.height > element.y
   }
 
-  writeConsole(wordList) {
-    wordList.unshift(" ")
-    wordList.forEach((letter, i) => {
-      setTimeout(() => {
-        DIALOG.innerHTML += letter
-      }, i * 30);
-    })
-  }
-
-  speak(text) {
-    const textList = text.split(' ')
-    const step = 14
-    let prevIndex = 0
-    let nextIndex = prevIndex + step
-    const dialogList = []
 
 
-    for (let index = 0; index < textList.length; index += step) {
-      dialogList.push(textList.slice(prevIndex, nextIndex).join(" "));
-      prevIndex += step
-      nextIndex += step
+  async speak(text) {
+
+    const printPhrase = async (text) => {
+      return new Promise((resolve, reject) => {
+        const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
+        FACEDIV.innerHTML = faceImafeTag
+        setTimeout(
+          () => {
+            DIALOG.innerHTML = text
+            resolve()
+          },
+          10)
+      })
     }
 
-    dialogList.forEach((phrase, i) => {
-      setTimeout(() => {
-        if (i > 2) {
-          DIALOG.innerHTML = " " + dialogList[i - 2] + " " + dialogList[i - 1]
-          this.writeConsole(dialogList[i].split(""))
-        } else {
-          this.writeConsole(dialogList[i].split(""))
+    const clearDialog = async () => {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          () => {
+            DIALOG.innerHTML = ""
+            FACEDIV.innerHTML = ""
+            resolve()
+          },
+          100)
+      })
+    }
+
+    const waitingKeypress = () => {
+      return new Promise((resolve) => {
+        document.addEventListener('keydown', onKeyHandler);
+        function onKeyHandler(e) {
+          if (e.code === 'Space') {
+            document.removeEventListener('keydown', onKeyHandler);
+            resolve();
+          }
         }
-      }, i * 3000);
-    });
+      });
+    }
 
-    document.addEventListener('keypress', (event) => {
-      if (event.code === 'Space') {
-        DIALOG.innerHTML = ""
+    let firstIndex = 0
+    let lastSpacedIndex = 0
+    let phrase = ""
+    for (let index = 0; index < text.length; index++) {
+      if (text[index] === " ") {
+        lastSpacedIndex = index
       }
-    })
+      if ((index + 10) % 280 === 0) {
+        phrase = text.slice(firstIndex, lastSpacedIndex)
+        await printPhrase(phrase)
+        firstIndex = lastSpacedIndex
+        await waitingKeypress();
+      } else {
+        phrase = text.slice(firstIndex, index + 1)
+      }
+      await printPhrase(phrase)
+    }
 
-    const faceImafeTag = `<img src="${this.sprite.src}" alt="">`
-
-    FACEDIV.innerHTML = faceImafeTag
-
+    await waitingKeypress();
+    await clearDialog()
   }
 
   follow(character, distance) {

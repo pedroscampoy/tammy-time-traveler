@@ -99,14 +99,14 @@ canvas {
   object-position: 0% 0%;
 
   width: 476px;
-  height: 182px;
+  height: 190px;
 }
 
 #dialog {
   padding: 0.5rem;
   background-color: black;
   color: white;
-  flex-grow: 0.7;
+  flex-grow: 1;
   overflow: hidden;
   text-align: justify;
   text-justify: inter-word;

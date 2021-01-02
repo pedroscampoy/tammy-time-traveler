@@ -26,11 +26,21 @@ class Game {
 
     this.setEra()
     this.draw()
-    this.tammy.speak("El cangrejo herradura del Atlántico o cangrejo cacerola (Limulus polyphemus) es una especie de quelicerado de la clase Merostomata. Llega a alcanzar 60 cm de largo y 30 cm de ancho. A pesar de su nombre, esta especie está más próxima a las arañas y escorpiones (arácnidos), que a los cangrejos (crustáceos) con los que no guarda ninguna relación. Habita en las zonas costeras y los estuarios fluviales.")
-
-    this.oldjosephilus.speak('HELLO NAUTI')
 
 
+
+    this.dialog()
+
+  }
+
+  dialog() {
+    const printAll = async () => {
+      await this.oldjosephilus.speak('HELLO NAUTI')
+      await this.tammy.speak("El cangrejo herradura del Atlántico o cangrejo cacerola (Limulus polyphemus) es una especie de quelicerado de la clase Merostomata. Llega a alcanzar 60 cm de largo y 30 cm de ancho. A pesar de su nombre, esta especie está más próxima a las arañas y escorpiones (arácnidos), que a los cangrejos (crustáceos).​ con los que no guarda ninguna relación. Habita en las zonas costeras y los estuarios fluviales.")
+      await this.babyjosephilus.speak("El cangrejo herradura del Atlántico o cangrejo cacerola (Limulus polyphemus) es una especie de quelicerado de la clase Merostomata. Llega a alcanzar 60 cm de largo y 30 cm de ancho. A pesar de su nombre, esta especie está más próxima a las arañas y escorpiones (arácnidos), que a los cangrejos (crustáceos).​ con los que no guarda ninguna relación. Habita en las zonas costeras y los estuarios fluviales.El cangrejo herradura del Atlántico o cangrejo cacerola (Limulus polyphemus) es una especie de quelicerado de la clase Merostomata. Llega a alcanzar 60 cm de largo y 30 cm de ancho. A pesar de su nombre, esta especie está más próxima a las arañas y escorpiones (arácnidos), que a los cangrejos (crustáceos).​ con los que no guarda ninguna relación. Habita en las zonas costeras y los estuarios fluviales")
+    }
+
+    printAll()
 
   }
 

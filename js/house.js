@@ -99,11 +99,26 @@ class House {
   }
 
   checkColition() {
-    if (this.tammy.collidesWith(this.owner)) {
-      this.owner.speak('HELLO')
+    const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
+    const printAll = async () => {
+      await this.owner.speak('HELLO')
+      await waitSpeak
     }
-  }
+    if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
+      console.log(state.isTalking)
+      printAll()
+      state.isTalking = true
+    } else {
+      setTimeout(
+        () => {
+          state.isTalking = false
+        },
+        4000)
+    }
 
+  }
 }
+
+
 
 
