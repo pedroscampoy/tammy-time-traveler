@@ -7,14 +7,14 @@ class Game {
 
     this.drawInterval = undefined
 
-    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
+    this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
     //MAIN CHARACTERS
-    this.tammy = new Character(this.ctx, 150, this.canvas.height - 100, './img/tammy.png')
+    this.tammy = new Character(this.ctx, 150, this.canvas.height - 100, './img/tammy_8.png', 2, 8)
     this.trilo = new Character(this.ctx, 150 - 60, this.canvas.height - 110, './img/trilo.png')
     //SIDE CHARACTERS
-    this.babyjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 1)
-    this.youngjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 1)
-    this.oldjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 1)
+    this.babyjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 2, 4, 1)
+    this.youngjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 2, 4, 1)
+    this.oldjosephilus = new Character(this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 2, 4, 1)
 
     this.sideCharacters = [this.babyjosephilus, this.youngjosephilus, this.oldjosephilus]
 
@@ -22,7 +22,48 @@ class Game {
     this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png', this.babyjosephilus)]
     this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
 
-    this.houses = this.presentHouses
+    this.houses = this.futureHouses
+
+    this.sardine = new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2, './img/sardine.png')
+
+    const getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    console.log(getRandomInt(this.ctx.canvas.height, this.ctx.canvas.height / 2))
+    this.sardines = [
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png')
+    ]
 
     this.setEra()
     this.draw()
@@ -96,11 +137,13 @@ class Game {
     this.houses.forEach(house => house.draw())
     this.tammy.draw()
     this.trilo.draw()
+    this.sardines.map(sardine => sardine.draw())
   }
 
   move() {
     this.tammy.move()
     this.trilo.follow(this.tammy, 60)
+    this.sardines.map(sardine => sardine.move())
   }
 
   onKeyEvent(event) {

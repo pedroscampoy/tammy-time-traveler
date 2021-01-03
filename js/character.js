@@ -1,5 +1,5 @@
 class Character {
-  constructor(ctx, x, y, imgChar, defaultframe = 0) {
+  constructor(ctx, x, y, imgChar, verticalFrames = 2, horizontalFrames = 4, defaultframe = 0) {
     this.ctx = ctx
 
     this.x = x
@@ -19,8 +19,8 @@ class Character {
     this.sprite = new Image()
     this.sprite.src = imgChar
     this.sprite.isReady = false
-    this.sprite.horizontalFrames = 4
-    this.sprite.verticalFrames = 2
+    this.sprite.horizontalFrames = horizontalFrames
+    this.sprite.verticalFrames = verticalFrames
     this.sprite.horizontalFrameIndex = 0
     this.sprite.verticalFrameIndex = defaultframe
     this.sprite.drawCount = 0
@@ -125,7 +125,7 @@ class Character {
     } else if (this.movements.right || this.movements.left) {
       this.animateSprite(movementsFrame)
     } else {
-      this.animateSprite(movementsFrame + 15)
+      this.animateSprite(movementsFrame + 10)
     }
   }
 

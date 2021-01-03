@@ -19,7 +19,7 @@ class House {
       up: false
     }
 
-    this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_M.png')
+    this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_8_M.png', 2, 8, 0)
     this.trilo = new Character(this.ctx, this.ctx.canvas.height / 2 - 70, this.ctx.canvas.height / 2, './img/trilo_M.png')
   }
 
@@ -101,7 +101,7 @@ class House {
   checkColition() {
     const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
     const printAll = async () => {
-      await this.owner.speak('HELLO')
+      await this.owner.speak('HELLO ALVAROTO')
       await waitSpeak
     }
     if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
@@ -113,7 +113,7 @@ class House {
         () => {
           state.isTalking = false
         },
-        4000)
+        5000)
     }
 
   }
