@@ -62,7 +62,7 @@ class House {
 
   enterHouse() {
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, this.imgBg)
-    if (!this.DrawHouseInterval && this.activated === true && this.movements.up === true) {
+    if (!this.DrawHouseInterval && this.activated && this.movements.up) {
       state.exterior = false
       this.DrawHouseInterval = setInterval(() => {
         if (!state.exterior) {
@@ -116,8 +116,6 @@ class House {
           }
         },
         10000)
-
-
     }
 
   }

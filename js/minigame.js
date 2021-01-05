@@ -71,7 +71,6 @@ class Minigame {
           this.checkCollisions()
           this.move()
           this.draw()
-
         } else {
           this.pause()
         }
@@ -92,8 +91,18 @@ class Minigame {
   }
 
   checkCollisions() {
+    this.bges.map(bge => {
+      if (this.collidesWith(bge)) {
+        console.log('COLIDED')
+        this.width += (1 / this.bges.length * 100)
+        this.height += (1 / this.bges.length * 100)
+      }
+    })
     this.bges = this.bges.filter(bge => !this.collidesWith(bge))
-    console.log((1 / this.bges.length + 10) * 10)
+    if (this.bges.length === 0) {
+      state.minigame = false
+      this.pause()
+    }
   }
 
 }

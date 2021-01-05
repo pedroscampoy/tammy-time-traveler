@@ -133,6 +133,7 @@ class Game {
     ]
 
     this.minimage1 = new Minigame(this.ctx, './img/past_bg.png', './img/trilo_up.png', this.sardines)
+    this.minimage2 = new Minigame(this.ctx, './img/future_bg.png', './img/trilo_up.png', this.oil)
 
 
     this.setEra()
@@ -196,7 +197,7 @@ class Game {
       this.pause()
     }
 
-    if (state.minigame) {
+    if (state.exterior && state.minigame) {
       this.minimage1.start()
     }
   }
