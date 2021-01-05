@@ -25,5 +25,5 @@ const state = {
     { triloClean: true }
   ],
   isTalking: false,
-  minigame: true
+  minigame: false
 }

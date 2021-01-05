@@ -64,7 +64,7 @@ class Minigame {
 
   start() {
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, this.imgBg)
-    if (!this.DrawMinigameInterval && state.minigame === true) {
+    if (!this.DrawMinigameInterval && state.minigame) {
       state.exterior = false
       this.DrawMinigameInterval = setInterval(() => {
         if (state.minigame) {
@@ -93,7 +93,6 @@ class Minigame {
   checkCollisions() {
     this.bges.map(bge => {
       if (this.collidesWith(bge)) {
-        console.log('COLIDED')
         this.width += (1 / this.bges.length * 100)
         this.height += (1 / this.bges.length * 100)
       }
@@ -101,7 +100,8 @@ class Minigame {
     this.bges = this.bges.filter(bge => !this.collidesWith(bge))
     if (this.bges.length === 0) {
       state.minigame = false
-      this.pause()
+      state.exterior = true
+      //this.pause()
     }
   }
 

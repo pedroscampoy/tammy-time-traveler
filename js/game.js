@@ -139,9 +139,9 @@ class Game {
     this.setEra()
     this.draw()
 
-
-
     this.dialog()
+
+    setTimeout(() => state.minigame = true, 4000)
 
   }
 
@@ -182,7 +182,7 @@ class Game {
   start() {
     if (!this.drawInterval) {
       this.drawInterval = setInterval(() => {
-        if (state.exterior && !state.minigame) {
+        if (state.exterior) {
           this.clear()
           this.move()
           this.checkCollisions()
@@ -195,10 +195,6 @@ class Game {
       }, FPS);
     } else {
       this.pause()
-    }
-
-    if (state.exterior && state.minigame) {
-      this.minimage1.start()
     }
   }
 
@@ -232,6 +228,11 @@ class Game {
 
   updateState() {
     state.timeTravel === true ? SLIDER.disabled = false : SLIDER.disabled = true
+    if (state.minigame) {
+      this.minimage1.start()
+    } else {
+      state.minigame = false
+    }
   }
 
   checkCollisions() {
@@ -240,7 +241,7 @@ class Game {
       if (this.tammy.collidesWith(house)) {
         house.activated = true;
         this.tammy.isJumping = true
-        if (house.movements.up === true && house.activated === true) {
+        if (house.movements.up && house.activated) {
           house.enterHouse()
           state.timeTravel = false
         }
