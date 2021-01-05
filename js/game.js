@@ -24,46 +24,116 @@ class Game {
 
     this.houses = this.futureHouses
 
-    this.sardine = new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2, './img/sardine.png')
-
     const getRandomInt = (min, max) => {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    console.log(getRandomInt(this.ctx.canvas.height, this.ctx.canvas.height / 2))
+
     this.sardines = [
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
       new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png'),
-      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png')
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1),
+      new BackgroundElement(this.ctx, getRandomInt(this.ctx.canvas.width / 2, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 4.1)
     ]
+
+    this.coelacanth = [
+      new BackgroundElement(this.ctx, getRandomInt(0, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 0.5),
+      new BackgroundElement(this.ctx, getRandomInt(0, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(0, this.ctx.canvas.width), getRandomInt(0, this.ctx.canvas.height / 2), './img/sardine.png', 0.3)
+    ]
+
+    this.oil = [
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.3),
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8)
+    ]
+
+    this.minimage1 = new Minigame(this.ctx, './img/past_bg.png', './img/trilo_up.png', this.sardines)
+
 
     this.setEra()
     this.draw()
@@ -90,12 +160,15 @@ class Game {
     if (SLIDER.value <= 33) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
       this.houses = this.pastHouses
+      this.backgroundElements = this.coelacanth
     } else if (SLIDER.value > 33 && SLIDER.value <= 66) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
       this.houses = this.presentHouses
+      this.backgroundElements = this.sardines
     } else {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
       this.houses = this.futureHouses
+      this.backgroundElements = this.oil
     }
   }
 
@@ -108,7 +181,7 @@ class Game {
   start() {
     if (!this.drawInterval) {
       this.drawInterval = setInterval(() => {
-        if (state.exterior) {
+        if (state.exterior && !state.minigame) {
           this.clear()
           this.move()
           this.checkCollisions()
@@ -121,6 +194,10 @@ class Game {
       }, FPS);
     } else {
       this.pause()
+    }
+
+    if (state.minigame) {
+      this.minimage1.start()
     }
   }
 
@@ -137,13 +214,13 @@ class Game {
     this.houses.forEach(house => house.draw())
     this.tammy.draw()
     this.trilo.draw()
-    this.sardines.map(sardine => sardine.draw())
+    this.backgroundElements.map(bge => bge.draw())
   }
 
   move() {
     this.tammy.move()
     this.trilo.follow(this.tammy, 60)
-    this.sardines.map(sardine => sardine.move())
+    this.backgroundElements.map(bge => bge.move())
   }
 
   onKeyEvent(event) {

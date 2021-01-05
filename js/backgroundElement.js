@@ -1,5 +1,5 @@
 class BackgroundElement {
-  constructor(ctx, x, y, imgChar) {
+  constructor(ctx, x, y, imgChar, speed = 4) {
     this.ctx = ctx
 
     this.x = x
@@ -7,10 +7,11 @@ class BackgroundElement {
 
     this.initialFrame = (Math.random() >= 0.5) ? 1 : 0;
 
-    this.vx = -50
+    this.speed = speed
+    this.vx = 0
 
-    this.minX = 0
-    this.maxX = this.ctx.canvas.width
+    this.minX = -400
+    this.maxX = this.ctx.canvas.width + 400
 
     this.sprite = new Image()
     this.sprite.src = imgChar
@@ -76,9 +77,9 @@ class BackgroundElement {
 
   move() {
     if (this.movements.right) {
-      this.vx = SPEED
+      this.vx = this.speed
     } else if (this.movements.left) {
-      this.vx = -SPEED
+      this.vx = -this.speed
     } else {
       this.vx = 0
     }

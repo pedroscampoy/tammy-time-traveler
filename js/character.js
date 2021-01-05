@@ -164,7 +164,6 @@ class Character {
   }
 
 
-
   async speak(text) {
 
     const printPhrase = async (text) => {
