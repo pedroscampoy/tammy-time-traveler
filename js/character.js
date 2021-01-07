@@ -1,5 +1,6 @@
 class Character {
-  constructor(ctx, x, y, imgChar, verticalFrames = 2, horizontalFrames = 4, defaultframe = 0) {
+  constructor(name, ctx, x, y, imgChar, verticalFrames = 2, horizontalFrames = 4, defaultframe = 0) {
+    this.name = name
     this.ctx = ctx
 
     this.x = x

@@ -1,5 +1,5 @@
 class BackgroundElement {
-  constructor(ctx, x, y, imgChar, speed = 4) {
+  constructor(ctx, x, y, imgChar, speed = 4, horizontalFrames = 2, verticalFrames = 2, movement = 'right') {
     this.ctx = ctx
 
     this.x = x
@@ -16,8 +16,8 @@ class BackgroundElement {
     this.sprite = new Image()
     this.sprite.src = imgChar
     this.sprite.isReady = false
-    this.sprite.horizontalFrames = 2
-    this.sprite.verticalFrames = 2
+    this.sprite.horizontalFrames = horizontalFrames
+    this.sprite.verticalFrames = verticalFrames
     this.sprite.horizontalFrameIndex = 0
     this.sprite.verticalFrameIndex = 0
     this.sprite.drawCount = 0
@@ -29,9 +29,16 @@ class BackgroundElement {
       this.height = this.sprite.frameHeight
     }
 
-    this.movements = {
-      right: true,
-      left: false
+    if (movement === 'right') {
+      this.movements = {
+        right: true,
+        left: false
+      }
+    } else {
+      this.movements = {
+        right: false,
+        left: true
+      }
     }
   }
 

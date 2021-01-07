@@ -17,13 +17,23 @@ const INVENTORY = document.getElementsByClassName('item')
 
 const state = {
   era: 'present',
-  timeTravel: true,
+  timeTravel: false,
   exterior: true,
   inventory: [
-    { timeClock: true },
-    { triloFossil: true },
-    { triloClean: true }
+    { timeClock: false },
+    { triloEmpty: false },
+    { triloFossil: false },
+    { triloClean: false },
+    { tintBottle: true }
   ],
   isTalking: false,
-  minigame: false
+  minigame: false,
+  minigame1: false,
+  minigame2: false,
+  timeClock: false,
+  triloFossil: false,
+  triloClean: false,
+  triloAlive: false,
+  sardinesEaten: false,
+  oilEaten: false
 }

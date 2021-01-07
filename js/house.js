@@ -19,8 +19,11 @@ class House {
       up: false
     }
 
-    this.tammy = new Character(this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_8_M.png', 2, 8, 0)
-    this.trilo = new Character(this.ctx, this.ctx.canvas.height / 2 - 70, this.ctx.canvas.height / 2, './img/trilo_M.png')
+    this.tammy = new Character('tammy', this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_8_M.png', 2, 8, 0)
+    this.trilo = new Character('trilo', this.ctx, this.ctx.canvas.height / 2 - 70, this.ctx.canvas.height / 2, './img/trilo_M.png')
+
+    this.story = new Story(this.tammy, this.trilo, this.owner)
+
   }
 
   draw() {
@@ -67,15 +70,17 @@ class House {
       this.DrawHouseInterval = setInterval(() => {
         if (!state.exterior) {
           this.background.draw()
-          if (this.owner) {
-            this.owner.draw()
-          }
           this.tammy.draw()
           this.tammy.move()
           this.trilo.draw()
           this.trilo.follow(this.tammy, 70)
+          if (this.owner) {
+            this.owner.draw()
+          }
+
           this.checkExit(this.tammy)
           this.checkColition()
+          this.updateInventory()
           SLIDER.disabled = true
         } else {
           this.pause()
@@ -98,8 +103,39 @@ class House {
     }
   }
 
+  updateInventory() {
+    this.presentObjects = state.inventory.filter(item => Object.values(item)[0] === true)
+    this.classObjects = this.presentObjects.map(object => Object.keys(object)[0])
+    this.newClassObject = [...INVENTORY].forEach(
+      (item, index) => {
+        if (this.classObjects[index]) {
+          item.classList = `item ${this.classObjects[index]}`
+        } else {
+          item.classList = `item`
+        }
+      }
+    );
+  }
+
   checkColition() {
-    //const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
+    if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
+      console.log(this.owner.name)
+      if (this.owner.name == 'oldjosephilus' && !state.timeClock && !state.triloFossil) {
+        state.isTalking = true
+        this.story.dialog1()
+      }
+    } else {
+      let dilaogTimeout = setTimeout(
+        () => {
+          state.isTalking = false
+          if (state.isTalking === false) {
+            clearTimeout(dilaogTimeout)
+          }
+        },
+        5000)
+    }
+
+    /*/const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
     const printAll = async () => {
       await this.owner.speak('HELLO')
       //await waitSpeak
@@ -116,7 +152,7 @@ class House {
           }
         },
         10000)
-    }
+    }*/
 
   }
 }

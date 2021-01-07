@@ -85,7 +85,7 @@ class Minigame {
 
   collidesWith(element) {
     return this.x < element.x + element.width &&
-      this.x + this.width > element.x &&
+      this.x > element.x &&
       this.y < element.y + element.height &&
       this.y + this.height > element.y
   }

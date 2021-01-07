@@ -119,6 +119,13 @@ canvas {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.triloEmpty {
+  background-image: url("../img/triloEmptyM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .triloFossil {
   background-image: url("../img/triloM.png");
   background-repeat: no-repeat;
@@ -128,4 +135,10 @@ canvas {
   background-image: url("../img/timeClockM.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.tintBottle {
+  background-image: url("../img/tintBottle.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
