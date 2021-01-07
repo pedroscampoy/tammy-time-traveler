@@ -16,12 +16,13 @@ class Game {
     this.babyjosephilus = new Character('babyjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 2, 4, 1)
     this.youngjosephilus = new Character('youngjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 2, 4, 1)
     this.oldjosephilus = new Character('oldjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 2, 4, 1)
+    this.vampiresquid = new Character('vampiresquid', this.ctx, (this.canvas.width - this.canvas.width * 0.4), this.canvas.height - (this.canvas.height * 0.7), './img/vampireSquid.png', 2, 12, 1)
 
     this.sideCharacters = [this.babyjosephilus, this.youngjosephilus, this.oldjosephilus]
 
     this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png', this.youngjosephilus)]
     this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png', this.babyjosephilus)]
-    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
+    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png', this.vampiresquid), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
 
     this.houses = this.futureHouses
 
@@ -178,7 +179,7 @@ class Game {
     this.setEra()
     this.draw()
 
-    //setTimeout(() => state.minigame = true, 4000)
+    setTimeout(() => state.minigame = true, 4000)
 
     this.story = new Story(this.tammy, this.trilo, this.oldjosephilus, this.babyjosephilus)
 
@@ -260,7 +261,7 @@ class Game {
   updateState() {
     state.timeTravel ? SLIDER.disabled = false : SLIDER.disabled = true
     if (state.minigame) {
-      this.minimage2.start()
+      this.minimage1.start()
     } else {
       state.minigame = false
     }
