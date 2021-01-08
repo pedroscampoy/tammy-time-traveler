@@ -10,19 +10,20 @@ class Game {
 
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
     //MAIN CHARACTERS
-    this.tammy = new Character('tammy', this.ctx, 150, this.canvas.height - 100, './img/tammy_8.png', 2, 8)
-    this.trilo = new Character('trilo', this.ctx, 150 - 60, this.canvas.height - 110, './img/trilo.png')
+    this.tammy = new Character('tammy', this.ctx, this.canvas.width / 2, this.canvas.height - 100, './img/tammy_8.png', 2, 8)
+    this.trilo = new Character('trilo', this.ctx, (this.canvas.width / 2) - 60, this.canvas.height - 110, './img/trilo.png')
     //SIDE CHARACTERS
     this.babyjosephilus = new Character('babyjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 2, 4, 1)
     this.youngjosephilus = new Character('youngjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 2, 4, 1)
     this.oldjosephilus = new Character('oldjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 2, 4, 1)
     this.vampiresquid = new Character('vampiresquid', this.ctx, (this.canvas.width - this.canvas.width * 0.4), this.canvas.height - (this.canvas.height * 0.7), './img/vampireSquid.png', 2, 12, 1)
+    this.black = new Character('black', this.ctx, 0, 0, './img/black.png', 2, 8, 1)
 
     this.sideCharacters = [this.babyjosephilus, this.youngjosephilus, this.oldjosephilus]
 
-    this.presentHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LP.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RP.png', this.youngjosephilus)]
-    this.pastHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LPast.png'), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RPast.png', this.babyjosephilus)]
-    this.futureHouses = [new House(this.ctx, 30, this.canvas.height - 150, './img/House_LF.png', this.vampiresquid), new House(this.ctx, 500, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
+    this.presentHouses = [new House(this.ctx, 190, this.canvas.height - 150, './img/House_LP.png', this.vampiresquid), new House(this.ctx, 820, this.canvas.height - 150, './img/House_RP.png', this.youngjosephilus)]
+    this.pastHouses = [new House(this.ctx, 820, this.canvas.height - 150, './img/House_RPast.png', this.babyjosephilus)]
+    this.futureHouses = [new House(this.ctx, 190, this.canvas.height - 150, './img/House_LF.png', this.black), new House(this.ctx, 820, this.canvas.height - 150, './img/House_RF.png', this.oldjosephilus)]
 
     this.houses = this.futureHouses
 
@@ -179,7 +180,7 @@ class Game {
     this.setEra()
     this.draw()
 
-    setTimeout(() => state.minigame = true, 4000)
+    //setTimeout(() => state.minigame = true, 4000)
 
     this.story = new Story(this.tammy, this.trilo, this.oldjosephilus, this.babyjosephilus)
 
@@ -193,14 +194,17 @@ class Game {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
       this.houses = this.pastHouses
       this.backgroundElements = this.coelacanth
+      state.era = 'past'
     } else if (SLIDER.value > 33 && SLIDER.value <= 66) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
       this.houses = this.presentHouses
       this.backgroundElements = this.sardines
+      state.era = 'present'
     } else {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
       this.houses = this.futureHouses
       this.backgroundElements = this.oil
+      state.era = 'future'
     }
   }
 

@@ -8,7 +8,7 @@ class House {
     this.x = x
     this.y = y
 
-    this.height = 100
+    this.height = 90
     this.width = 50
 
     this.activated = false
@@ -28,8 +28,8 @@ class House {
 
   draw() {
     this.ctx.save()
-    this.ctx.fillStyle = 'rgba(0,0,0,0)'
-    this.ctx.strokeRect(this.x, this.y, this.width, this.height)
+    //this.ctx.fillStyle = 'rgba(0,0,0,0)'
+    //this.ctx.strokeRect(this.x, this.y, this.width, this.height)
 
     if (this.activated) {
       this.drawTriangle()

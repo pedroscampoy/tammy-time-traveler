@@ -16,8 +16,8 @@ const DIALOG = document.getElementById('dialog')
 const INVENTORY = document.getElementsByClassName('item')
 
 const state = {
-  era: 'present',
-  timeTravel: false,
+  era: 'future',
+  timeTravel: true,
   exterior: true,
   inventory: [
     { timeClock: false },
