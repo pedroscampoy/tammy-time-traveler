@@ -170,11 +170,18 @@ class Game {
       new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 1, 1, 2, 'left'),
       new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.8, 1, 2, 'left'),
       new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 0.7, 1, 2, 'left'),
-      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 1, 1, 2, 'left')
+      new BackgroundElement(this.ctx, getRandomInt(-1000, this.ctx.canvas.width + 500), getRandomInt(-200, this.ctx.canvas.height / 2), './img/oil.png', 1, 1, 2, 'left'),
     ]
 
-    this.minimage1 = new Minigame(this.ctx, './img/past_bg.png', './img/trilo_up.png', this.sardines)
-    this.minimage2 = new Minigame(this.ctx, './img/future_bg.png', './img/trilo_up.png', this.oil)
+    this.surays = [
+      new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.2, 1, 2), new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.3, 1, 2), new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.25, 1, 2),
+      new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.19, 1, 2),
+      new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.2, 1, 2), new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.3, 1, 2), new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.25, 1, 2),
+      new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.19, 1, 2)
+    ]
+
+    this.minigame1 = new Minigame(this.ctx, './img/present_bg.png', './img/trilo_up.png', this.sardines)
+    this.minigame2 = new Minigame(this.ctx, './img/future_bg.png', './img/trilo_up.png', this.oil)
 
 
     this.setEra()
@@ -182,7 +189,7 @@ class Game {
 
     //setTimeout(() => state.minigame = true, 4000)
 
-    this.story = new Story(this.tammy, this.trilo, this.oldjosephilus, this.babyjosephilus)
+    this.story = new Story(this.tammy, this.trilo, this.oldjosephilus)
 
     //this.story.dialog1()
 
@@ -193,17 +200,25 @@ class Game {
     if (SLIDER.value <= 33) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/past_bg.png')
       this.houses = this.pastHouses
-      this.backgroundElements = this.coelacanth
+      this.backgroundElements = [...this.coelacanth, ...this.surays]
       state.era = 'past'
     } else if (SLIDER.value > 33 && SLIDER.value <= 66) {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/present_bg.png')
       this.houses = this.presentHouses
-      this.backgroundElements = this.sardines
+      if (state.sardinesEaten) {
+        this.backgroundElements = this.surays
+      } else {
+        this.backgroundElements = [...this.sardines, ...this.surays]
+      }
       state.era = 'present'
     } else {
       this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
       this.houses = this.futureHouses
-      this.backgroundElements = this.oil
+      if (state.oilEaten) {
+        this.backgroundElements = this.surays
+      } else {
+        this.backgroundElements = this.oil
+      }
       state.era = 'future'
     }
   }
@@ -246,13 +261,18 @@ class Game {
     this.background.draw()
     this.houses.forEach(house => house.draw())
     this.tammy.draw()
-    this.trilo.draw()
+    if (state.triloAlive) {
+      this.trilo.draw()
+    }
     this.backgroundElements.map(bge => bge.draw())
   }
 
   move() {
     this.tammy.move()
-    this.trilo.follow(this.tammy, 60)
+    if (state.triloAlive) {
+      this.trilo.follow(this.tammy, 60)
+    }
+
     this.backgroundElements.map(bge => bge.move())
   }
 
@@ -264,10 +284,23 @@ class Game {
 
   updateState() {
     state.timeTravel ? SLIDER.disabled = false : SLIDER.disabled = true
-    if (state.minigame) {
-      this.minimage1.start()
+
+    if (state.triloAlive && state.era === 'present' && !state.sardinesEaten) {
+      state.minigame = true
+      this.minigame1.start()
+      state.sardinesEaten = true
+    } else if (state.triloAlive && state.era === 'future' && !state.oilEaten) {
+      state.minigame = true
+      this.minigame2.start()
+      state.oilEaten = true
     } else {
       state.minigame = false
+    }
+
+    if (state.era === 'past' && state.triloClean && !state.isTalking && !state.triloAlive) {
+      state.triloAlive = true
+      state.isTalking = true
+      this.story.dialog4()
     }
   }
 

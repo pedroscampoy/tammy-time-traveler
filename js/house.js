@@ -72,12 +72,14 @@ class House {
           this.background.draw()
           this.tammy.draw()
           this.tammy.move()
-          this.trilo.draw()
-          this.trilo.follow(this.tammy, 70)
+          if (state.triloAlive) {
+            this.trilo.draw()
+            this.trilo.follow(this.tammy, 70)
+          }
+
           if (this.owner) {
             this.owner.draw()
           }
-
           this.checkExit(this.tammy)
           this.checkColition()
           this.updateInventory()
@@ -119,43 +121,71 @@ class House {
 
   checkColition() {
     if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
-      console.log(this.owner.name)
-      if (this.owner.name == 'oldjosephilus' && !state.timeClock && !state.triloFossil) {
+      state.isTalking = true
+      if (this.owner.name == 'oldjosephilus' &&
+        !state.timeClock &&
+        !state.triloFossil &&
+        state.era === 'future') {
         state.isTalking = true
         this.story.dialog1()
+      } else if (this.owner.name === 'youngjosephilus' &&
+        state.timeClock &&
+        state.triloFossil &&
+        state.era === 'present') {
+        state.isTalking = true
+        this.story.dialog2()
+      } else if (this.owner.name === 'vampiresquid' &&
+        state.timeClock &&
+        !state.triloFossil &&
+        state.era === 'present') {
+        state.isTalking = true
+        this.story.dialog3()
+      } else if (this.owner.name === 'black') {
+        state.isTalking = true
+        this.story.dialogBlack()
+      } else if (this.owner.name === 'babyjosephilus') {
+        state.isTalking = true
+        this.story.dialogBaby()
       }
-    } else {
-      let dilaogTimeout = setTimeout(
-        () => {
-          state.isTalking = false
-          if (state.isTalking === false) {
-            clearTimeout(dilaogTimeout)
-          }
-        },
-        5000)
+      else {
+        state.isTalking = true
+        this.story.dialograndom()
+      }
     }
-
-    /*/const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
-    const printAll = async () => {
-      await this.owner.speak('HELLO')
-      //await waitSpeak
+    else {
+      // let dilaogTimeout = setTimeout(
+      //   () => {
+      //     state.isTalking = false
+      //     if (state.isTalking === false) {
+      //       clearTimeout(dilaogTimeout)
+      //     }
+      //   },
+      //   5000)
     }
-    if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
-      printAll()
-      state.isTalking = true
-    } else {
-      let dilaogTimeout = setTimeout(
-        () => {
-          state.isTalking = false
-          if (state.isTalking === false) {
-            clearTimeout(dilaogTimeout)
-          }
-        },
-        10000)
-    }*/
-
   }
 }
+
+
+/*/const waitSpeak = new Promise((resolve) => setTimeout(resolve, 1000));
+const printAll = async () => {
+await this.owner.speak('HELLO')
+//await waitSpeak
+}
+if (this.tammy.collidesWith(this.owner) && !state.isTalking) {
+printAll()
+state.isTalking = true
+} else {
+let dilaogTimeout = setTimeout(
+() => {
+state.isTalking = false
+if (state.isTalking === false) {
+clearTimeout(dilaogTimeout)
+}
+},
+10000)
+}*/
+
+
 
 
 
