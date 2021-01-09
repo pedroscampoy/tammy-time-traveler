@@ -43,10 +43,7 @@ class Story {
     const dialog = async () => {
       await this.owner.speak('Hello Tammy')
       await this.tammy.speak("Hello young Josephylus")
-      await this.owner.speak("Thanks for comming") // Its important
-      //never though I would be the one giving you this, but this is a time traveling machine
-      //I'm giving you thos because I know you are the one
-      //Visit Character so she an give you the fossil and will give you details about its propeties
+      await this.owner.speak("Thanks for comming")
       await dirtyFossilTrue()
       await emptyFossilTrue()
       await triloFossilFalse()
@@ -96,10 +93,7 @@ class Story {
     const dialog = async () => {
       await this.owner.speak('Hello Tammy')
       await this.tammy.speak("Hello young Vampyte")
-      await this.owner.speak("Thanks for comming") // Its important
-      //never though I would be the one giving you this, but this is a time traveling machine
-      //I'm giving you thos because I know you are the one
-      //Visit Character so she an give you the fossil and will give you details about its propeties
+      await this.owner.speak("Thanks for comming")
       await triloFossilTrue()
       await this.stopTalking()
     }
@@ -125,10 +119,7 @@ class Story {
       await triloCleanFalse()
       await this.tammy.speak("AWWWW Aren't you a cutie")
       await this.trilo.speak("❤️")
-      await this.tammy.speak("Let's give you some food")
-      //never though I would be the one giving you this, but this is a time traveling machine
-      //I'm giving you thos because I know you are the one
-      //Visit Character so she an give you the fossil and will give you details about its propeties
+      await this.tammy.speak("Let's give you some food 🐟")
       await this.stopTalking()
     }
 
@@ -158,7 +149,15 @@ class Story {
 
   dialogBaby() {
     const dialog = async () => {
-      await this.owner.speak('😉')
+      await this.owner.speak('👶')
+      await this.stopTalking()
+    }
+    dialog()
+  }
+
+  dialogCongrats() {
+    const dialog = async () => {
+      await this.owner.speak('YOU MADE IT TAMMY 👏🏻👏🏻👏🏻')
       await this.stopTalking()
     }
     dialog()

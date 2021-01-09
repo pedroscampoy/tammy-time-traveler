@@ -11,11 +11,11 @@ class Game {
     this.background = new Background(this.ctx, this.ctx.canvas.width, this.ctx.canvas.height, './img/future_bg.png')
     //MAIN CHARACTERS
     this.tammy = new Character('tammy', this.ctx, this.canvas.width / 2, this.canvas.height - 100, './img/tammy_8.png', 2, 8)
-    this.trilo = new Character('trilo', this.ctx, (this.canvas.width / 2) - 60, this.canvas.height - 110, './img/trilo.png')
+    this.trilo = new Character('trilo', this.ctx, (this.canvas.width / 2) - 60, 230, './img/trilo.png')
     //SIDE CHARACTERS
     this.babyjosephilus = new Character('babyjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.5), './img/babyjosephilus.png', 2, 4, 1)
     this.youngjosephilus = new Character('youngjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/youngjosephilus.png', 2, 4, 1)
-    this.oldjosephilus = new Character('oldjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.3), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 2, 4, 1)
+    this.oldjosephilus = new Character('oldjosephilus', this.ctx, (this.canvas.width - this.canvas.width * 0.4), this.canvas.height - (this.canvas.height * 0.7), './img/oldjosephilus.png', 2, 4, 1)
     this.vampiresquid = new Character('vampiresquid', this.ctx, (this.canvas.width - this.canvas.width * 0.4), this.canvas.height - (this.canvas.height * 0.7), './img/vampireSquid.png', 2, 12, 1)
     this.black = new Character('black', this.ctx, 0, 0, './img/black.png', 2, 8, 1)
 
@@ -176,12 +176,12 @@ class Game {
     this.surays = [
       new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.2, 1, 2), new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.3, 1, 2), new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.25, 1, 2),
       new BackgroundElement(this.ctx, this.ctx.canvas.width / 2, -40, './img/sunray.png', 0.19, 1, 2),
-      new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.2, 1, 2), new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.3, 1, 2), new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.25, 1, 2),
-      new BackgroundElement(this.ctx, -100, -40, './img/sunray.png', 0.19, 1, 2)
+      new BackgroundElement(this.ctx, -300, -40, './img/sunray.png', 0.2, 1, 2), new BackgroundElement(this.ctx, -300, -40, './img/sunray.png', 0.3, 1, 2), new BackgroundElement(this.ctx, -300, -40, './img/sunray.png', 0.25, 1, 2),
+      new BackgroundElement(this.ctx, -300, -40, './img/sunray.png', 0.19, 1, 2)
     ]
 
     this.minigame1 = new Minigame(this.ctx, './img/present_bg.png', './img/trilo_up.png', this.sardines)
-    this.minigame2 = new Minigame(this.ctx, './img/future_bg.png', './img/trilo_up.png', this.oil)
+    this.minigame2 = new Minigame(this.ctx, './img/future_bg.png', './img/triloBig_up.png', this.oil)
 
 
     this.setEra()
@@ -289,12 +289,18 @@ class Game {
       state.minigame = true
       this.minigame1.start()
       state.sardinesEaten = true
-    } else if (state.triloAlive && state.era === 'future' && !state.oilEaten) {
+      state.triloBig = true
+    } else if (state.triloAlive && state.era === 'future' && !state.oilEaten && state.sardinesEaten) {
       state.minigame = true
       this.minigame2.start()
       state.oilEaten = true
     } else {
       state.minigame = false
+    }
+
+    if (state.triloBig) {
+      this.trilo.sprite.src = './img/triloBig.png'
+      this.trilo.sprite.horizontalFrames = 6
     }
 
     if (state.era === 'past' && state.triloClean && !state.isTalking && !state.triloAlive) {

@@ -34,6 +34,7 @@ const state = {
   triloFossil: false,
   triloClean: false,
   triloAlive: false,
+  triloBig: false,
   sardinesEaten: false,
   oilEaten: false
 }

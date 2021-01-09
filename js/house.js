@@ -20,13 +20,17 @@ class House {
     }
 
     this.tammy = new Character('tammy', this.ctx, this.ctx.canvas.height / 2, this.ctx.canvas.height / 2, './img/tammy_8_M.png', 2, 8, 0)
-    this.trilo = new Character('trilo', this.ctx, this.ctx.canvas.height / 2 - 70, this.ctx.canvas.height / 2, './img/trilo_M.png')
+    this.trilo = new Character('trilo', this.ctx, this.ctx.canvas.height / 2 - 70, 100, './img/trilo_M.png')
 
     this.story = new Story(this.tammy, this.trilo, this.owner)
 
   }
 
   draw() {
+    if (state.triloBig) {
+      this.trilo.sprite.src = './img/triloBig_M.png'
+      this.trilo.sprite.horizontalFrames = 6
+    }
     this.ctx.save()
     //this.ctx.fillStyle = 'rgba(0,0,0,0)'
     //this.ctx.strokeRect(this.x, this.y, this.width, this.height)
@@ -128,6 +132,10 @@ class House {
         state.era === 'future') {
         state.isTalking = true
         this.story.dialog1()
+      } else if (this.owner.name == 'oldjosephilus' &&
+        state.oilEaten) {
+        state.isTalking = true
+        this.story.dialogCongrats()
       } else if (this.owner.name === 'youngjosephilus' &&
         state.timeClock &&
         state.triloFossil &&
