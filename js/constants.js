@@ -17,7 +17,7 @@ const INVENTORY = document.getElementsByClassName('item')
 
 const state = {
   era: 'future',
-  timeTravel: true,
+  timeTravel: false,
   exterior: true,
   inventory: [
     { timeClock: false },

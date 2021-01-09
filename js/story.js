@@ -15,11 +15,14 @@ class Story {
   dialog1() {
     const dialog = async () => {
       await this.owner.speak('Hello Tammy')
-      await this.tammy.speak("Hello Josephylus")
+      await this.tammy.speak("Hello Joseph")
       await this.owner.speak("Thanks for comming") // Its important
       //never though I would be the one giving you this, but this is a time traveling machine
       //I'm giving you thos because I know you are the one
       //Visit Character so she an give you the fossil and will give you details about its propeties
+      await this.owner.speak("Only hope")
+      await this.owner.speak("You can use this ⏲️")
+      await this.tammy.speak("I'll do my best 💪")
       await clocktrue()
       await this.stopTalking()
     }
@@ -42,8 +45,10 @@ class Story {
   dialog2() {
     const dialog = async () => {
       await this.owner.speak('Hello Tammy')
-      await this.tammy.speak("Hello young Josephylus")
-      await this.owner.speak("Thanks for comming")
+      await this.tammy.speak("Hello young Joseph")
+      await this.owner.speak("I see you have a fossil 🦕")
+      await this.tammy.speak("I meed it clean so I can revive it")
+      await this.owner.speak("That'silly")
       await dirtyFossilTrue()
       await emptyFossilTrue()
       await triloFossilFalse()
@@ -92,8 +97,9 @@ class Story {
   dialog3() {
     const dialog = async () => {
       await this.owner.speak('Hello Tammy')
-      await this.tammy.speak("Hello young Vampyte")
+      await this.tammy.speak("Hello Vampy")
       await this.owner.speak("Thanks for comming")
+      await this.tammy.speak("I know you have a hidden fossil, please give to me, no question !")
       await triloFossilTrue()
       await this.stopTalking()
     }
